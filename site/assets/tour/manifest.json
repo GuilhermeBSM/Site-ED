@@ -1,0 +1,4 @@
+{
+  "desktop": { "count": 0, "path": "assets/tour/desktop/frame_", "ext": ".webp", "pad": 4 },
+  "mobile":  { "count": 0, "path": "assets/tour/mobile/frame_",  "ext": ".webp", "pad": 4 }
+}
