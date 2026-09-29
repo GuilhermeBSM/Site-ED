@@ -34,7 +34,7 @@
   };
   toggle.addEventListener('click', () => setMenu(!header.classList.contains('is-open')));
   addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
-  addEventListener('resize', () => { if (innerWidth > 833) setMenu(false); });
+  addEventListener('resize', () => { if (innerWidth > 833 && header.classList.contains('is-open')) setMenu(false); }, { passive: true });
 
   /* ---------- sub-nav: recolhe ao descer, volta ao subir ---------- */
   let lastY = scrollY, acc = 0, navLock = false;
@@ -75,7 +75,6 @@
   $$('a[href^="#"]').forEach((a) => {
     a.addEventListener('click', (e) => {
       const id = a.getAttribute('href');
-      if (id === '#') { e.preventDefault(); return; }
       const el = $(id);
       if (!el) return;
       e.preventDefault();
@@ -140,7 +139,7 @@
       if (canvas.width !== W || canvas.height !== H) { canvas.width = W; canvas.height = H; }
       render(true);
     };
-    addEventListener('resize', resize);
+    addEventListener('resize', resize, { passive: true });
     if (posterImg) posterImg.addEventListener('load', () => render(true));
 
     const loadFrames = () => {
@@ -203,7 +202,7 @@
       removeEventListener('resize', resize);
       if (ctx) ctx.revert();
       heroEl.classList.remove('is-tour', 'is-scrub');
-      gsap.set && gsap.set(['.hero__copy', '.hero__scrim', '.chapter'], { clearProps: 'all' });
+      gsap.set(['.hero__copy', '.hero__scrim', '.chapter'], { clearProps: 'all' });
     };
   }
 
